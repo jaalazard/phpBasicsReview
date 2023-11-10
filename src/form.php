@@ -1,10 +1,18 @@
-<form action="thanks.php" method="post">
+<form action="traitement.php" method="post">
 
     <div>
 
-        <label for="nom">Nom :</label>
+        <label for="lastname">Nom :</label>
 
-        <input type="text" id="nom" name="user_name">
+        <input required type="text" id="lastname" name="user_lastname">
+
+    </div>
+
+    <div>
+
+        <label for="firstname">Prénom :</label>
+
+        <input required type="text" id="firstname" name="user_firstname">
 
     </div>
 
@@ -12,7 +20,7 @@
 
         <label for="courriel">Courriel :</label>
 
-        <input type="email" id="courriel" name="user_email">
+        <input required type="email" id="courriel" name="user_email">
 
     </div>
 
@@ -20,9 +28,18 @@
 
         <label for="Téléphone">Téléphone :</label>
 
-        <input type="tel" id="Téléphone" name="user_phone">
+        <input required type="tel" id="Téléphone" name="user_phone">
 
     </div>
+
+    <label for="subject-select">Choisissez un sujet:</label>
+
+    <select required name="subject" id="subject-select">
+        <option value="">Choisissez un sujet</option>
+        <option value="reclamation">Réclamation</option>
+        <option value="devis">Devis</option>
+        <option value="autre">Autre</option>
+    </select>
 
     <div>
 
@@ -40,4 +57,14 @@
 
 </form>
 <?php
-var_dump($_POST);
+
+$errors = isset($errors) ? $errors : [];
+
+if (!empty($errors)) {
+    // affichage des erreurs
+    echo '<div class="errors">';
+    foreach ($errors as $error) {
+        echo '<p>' . $error . '</p>';
+    }
+    echo '</div>';
+}
